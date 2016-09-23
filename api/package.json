@@ -1,0 +1,35 @@
+{
+  "name": "business-project-api",
+  "version": "1.0.0",
+  "description": "rest api for business-project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV=dev node index.js"
+  },
+  "keywords": [
+    "business"
+  ],
+  "author": "acereijo <angel@fintonic.com>",
+  "license": "ISC",
+  "dependencies": {
+    "app-module-path": "^2.0.0",
+    "bluebird": "^3.4.6",
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
+    "electrolyte": "^0.3.0",
+    "express": "^4.14.0",
+    "helmet": "^2.2.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.5.0",
+    "eslint-config-airbnb": "^11.1.0",
+    "eslint-plugin-import": "^1.15.0",
+    "eslint-plugin-mocha": "^4.5.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.0.2",
+    "sinon": "^1.17.6",
+    "sinon-chai": "^2.8.0"
+  }
+}
