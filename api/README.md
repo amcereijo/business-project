@@ -5,6 +5,7 @@ API for business operations
 * [app-module-path](https://www.npmjs.com/package/app)
 * [bluebird](https://www.npmjs.com/package/bluebird)
 * [body-parser](https://www.npmjs.com/package/body-parser)
+* [compression](https://www.npmjs.com/package/compression)
 * [cors](https://www.npmjs.com/package/cors)
 * [electrolyte](https://www.npmjs.com/package/electrolyte)
 * [express](https://www.npmjs.com/package/express)

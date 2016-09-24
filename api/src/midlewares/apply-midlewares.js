@@ -1,6 +1,6 @@
 'use strict';
 
-exports = module.exports = (cors, helmet, bodyParser) => {
+exports = module.exports = (cors, helmet, bodyParser, compression) => {
   return (app) => {
     app.use(cors());
     app.use(helmet());
@@ -8,6 +8,7 @@ exports = module.exports = (cors, helmet, bodyParser) => {
     app.use(bodyParser.urlencoded({
       extended: true,
     }));
+    app.use(compression());
   };
 };
 
@@ -16,4 +17,5 @@ exports['@require'] = [
   'cors',
   'helmet',
   'body-parser',
+  'compression',
 ];
