@@ -11,10 +11,11 @@ describe('business-service module', () => {
   describe('when it runs', () => {
     const businessData = require('src/data/business');
     const CityNotFoundError = require('src/errors/city-not-found-error');
+    const BusinessNotFoundError = require('src/errors/business-not-found-error');
 
     let businessService;
     before(() => {
-      businessService = businesServiceModule(businessData, CityNotFoundError);
+      businessService = businesServiceModule(businessData, CityNotFoundError, BusinessNotFoundError);
     });
 
     describe('should return an object', () => {
@@ -74,6 +75,44 @@ describe('business-service module', () => {
             businessService.getCityBusiness('EmptyCity')
               .then((businesses) => {
                 expect(businesses).to.eqls([]);
+                done();
+              });
+          });
+        });
+      });
+
+      describe('with "updateBusinessAddress" property', () => {
+        it('defined as a function', () => {
+          expect(businessService.updateBusinessAddress).to.be.a('function');
+        });
+
+        describe('when it runs', () => {
+          const id = 'MAD71639921';
+          const newAddress = 'GranVia';
+          let savedBusiness;
+
+          before(() => {
+            savedBusiness = Object.assign({}, businessData[0][1]);
+          });
+          after(() => {
+            businessData[0][1] = savedBusiness;
+          });
+
+          it('it should change que business adress', (done) => {
+            businessService.updateBusinessAddress(id, newAddress)
+              .then((modifiedElement) => {
+                expect(modifiedElement.address).equals(newAddress);
+                expect(businessData[0][1]).to.not.eqls(savedBusiness);
+                done();
+              });
+          });
+        });
+
+        describe('and when it runs and the businessº does not exist', () => {
+          it('should return an "BusinessNotFoundError" error', (done) => {
+            businessService.updateBusinessAddress('id', 'newAddress')
+              .catch((err) => {
+                expect(err).to.be.instanceOf(BusinessNotFoundError);
                 done();
               });
           });
