@@ -1,0 +1,38 @@
+{
+  "plugins": [
+    "mocha"
+  ],
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "extends": "airbnb/base",
+  "rules": {
+    "no-console": "off",
+    "object-shorthand": "off",
+    "keyword-spacing": "off",
+    "strict": "off",
+    "max-len": "off",
+    "no-param-reassign": "off",
+    "arrow-body-style": "off",
+    "no-restricted-syntax": "off",
+    "global-require": "off",
+    "no-underscore-dangle": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/no-unresolved": "off",
+    "guard-for-in": "off",
+    "no-unused-expressions": "off",
+    "mocha/no-exclusive-tests": "error"
+  },
+  "globals" : {
+    "describe": true,
+    "beforeEach": true,
+    "afterEach": true,
+    "before": true,
+    "after": true,
+    "expect": true,
+    "it": true,
+    "assert": true,
+    "sinon": true
+  }
+}
