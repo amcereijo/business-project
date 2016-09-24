@@ -1,12 +1,12 @@
 'use strict';
 
-exports = module.exports = (config, express, http, applyMidlewares, unexpectedError) => {
+exports = module.exports = (config, express, http, applyMiddlewares, unexpectedError) => {
   function start() {
     const app = express();
     const port = config.port;
     const httpServer = http.createServer(app);
 
-    applyMidlewares(app);
+    applyMiddlewares(app);
     unexpectedError(app);
 
     httpServer.listen(port);
@@ -23,6 +23,6 @@ exports['@require'] = [
   'config/index',
   'express',
   'http',
-  'src/midlewares/apply-midlewares',
-  'src/midlewares/unexpected-error',
+  'src/middlewares/apply-middlewares',
+  'src/middlewares/unexpected-error',
 ];
