@@ -29,10 +29,27 @@ exports = module.exports = (businessDataWrapper, CityNotFoundError, BusinessNotF
     });
   }
 
+  function removeBusiness(id) {
+    return new Promise((resolve, reject) => {
+      const business = businessDataWrapper.businesses.filter(businessElement => businessElement.id === id)[0];
+      if(!business) {
+        reject(new BusinessNotFoundError());
+      } else {
+        const indexOf = businessDataWrapper.businesses.indexOf(business);
+        const cityOfBusiness = business.city;
+        businessDataWrapper.businesses = Array.prototype.concat.apply(businessDataWrapper.businesses.slice(0, indexOf),
+          businessDataWrapper.businesses.slice(indexOf + 1));
+        const businesessInCity = businessDataWrapper.businesses.filter(element => element.city === cityOfBusiness);
+        resolve(businesessInCity);
+      }
+    });
+  }
+
   return {
     getCities,
     getCityBusinesses,
     updateBusinessAddress,
+    removeBusiness,
   };
 };
 

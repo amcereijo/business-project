@@ -158,6 +158,44 @@ describe('business-service module', () => {
           });
         });
       });
+
+      describe('with "removeBusiness" property', () => {
+        it('defined as a function', () => {
+          expect(businessService.removeBusiness).to.be.a('function');
+        });
+
+        describe('when it runs', () => {
+          let savedBusiness;
+          const cityBusinesses = [{
+            city: 'Madrid',
+            id: 'MAD17298',
+            name: 'Farmacia Licenciado Fernández',
+            address: 'Calle Arturo Soria, 15',
+          }, {
+            city: 'Madrid',
+            id: 'MAD71639921',
+            name: 'Panadería San Martín',
+            address: 'Calle del Hostal, 5',
+          }];
+
+          before(() => {
+            savedBusiness = Object.assign({}, businessWrapper.businesses[1]);
+          });
+          after(() => {
+            businessWrapper.businesses = Array.prototype.concat.apply(businessWrapper.businesses.slice(0, 1),
+              savedBusiness, businessWrapper.businesses.slice(1));
+          });
+
+          it('it should remove the element from the city business list', (done) => {
+            businessService.removeBusiness(savedBusiness.id)
+              .then((businesess) => {
+                expect(businesess.length < cityBusinesses.length).to.be.true;
+                expect(businesess.indexOf(savedBusiness)).equals(-1);
+                done();
+              });
+          });
+        });
+      });
     });
   });
 });
