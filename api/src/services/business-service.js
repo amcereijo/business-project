@@ -25,8 +25,8 @@ exports = module.exports = (businessData, CityNotFoundError, BusinessNotFoundErr
       if(!business) {
         reject(new BusinessNotFoundError());
       } else {
-        resolve(business);
         business.address = address;
+        resolve(business);
       }
     });
   }
