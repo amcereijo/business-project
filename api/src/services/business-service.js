@@ -1,26 +1,24 @@
 'use strict';
 
-exports = module.exports = (businessData, CityNotFoundError, BusinessNotFoundError) => {
+exports = module.exports = (businessDataWrapper, CityNotFoundError, BusinessNotFoundError) => {
   function getCities() {
-    return Promise.resolve(businessData.map(element => element.city));
+    return Promise.resolve(businessDataWrapper.cities);
   }
 
   function getCityBusinesses(city = '') {
     return new Promise((resolve, reject) => {
-      const cityElement = businessData.filter(element => element.city.toUpperCase() === city.toUpperCase());
-      if(!cityElement || cityElement.length === 0) {
+      const businesses = businessDataWrapper.businesses.filter(element => element.city.toUpperCase() === city.toUpperCase());
+      if(businesses.length === 0 && businessDataWrapper.cities.indexOf(city) === -1) {
         reject(new CityNotFoundError());
       } else {
-        resolve(cityElement[0].businesses || []);
+        resolve(businesses);
       }
     });
   }
 
   function updateBusinessAddress(id, address) {
     return new Promise((resolve, reject) => {
-      const business = businessData
-        .reduce((businesses = [], cityElement) => Array.prototype.concat.call(businesses, cityElement.businesses), [])
-        .filter(businessElement => businessElement.id === id)[0];
+      const business = businessDataWrapper.businesses.filter(businessElement => businessElement.id === id)[0];
 
       if(!business) {
         reject(new BusinessNotFoundError());
@@ -40,7 +38,7 @@ exports = module.exports = (businessData, CityNotFoundError, BusinessNotFoundErr
 
 exports['@singleton'] = true;
 exports['@require'] = [
-  'src/data/business',
+  'src/data/business-wrapper',
   'src/errors/city-not-found-error',
   'src/errors/business-not-found-error',
 ];

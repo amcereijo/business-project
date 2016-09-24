@@ -9,13 +9,46 @@ describe('business-service module', () => {
   });
 
   describe('when it runs', () => {
-    const businessData = require('src/data/business');
+    const businessData = [{
+      country: 'ES',
+      city: 'Madrid',
+      businesses: [{
+        id: 'MAD17298',
+        name: 'Farmacia Licenciado Fernández',
+        address: 'Calle Arturo Soria, 15',
+      }, {
+        id: 'MAD71639921',
+        name: 'Panadería San Martín',
+        address: 'Calle del Hostal, 5',
+      }],
+    }, {
+      country: 'ES',
+      city: 'Barcelona',
+      businesses: [{
+        id: 'BAR293471',
+        name: 'Farmacia Licenciado Puig',
+        address: 'Ramblas, 15, 3o D',
+      }],
+    }, {
+      country: 'FR',
+      city: 'Paris',
+      businesses: [{
+        id: 'PAR3234871',
+        name: 'Bistrot le Poulet',
+        address: '66 Rue Monge',
+      }, {
+        id: 'PAR32391871',
+        name: 'Crédit Agricole',
+        address: '739 Rue de Vaugirard',
+      }],
+    }];
+    const businessWrapper = require('src/data/business-wrapper')(businessData);
     const CityNotFoundError = require('src/errors/city-not-found-error');
     const BusinessNotFoundError = require('src/errors/business-not-found-error');
 
     let businessService;
     before(() => {
-      businessService = businesServiceModule(businessData, CityNotFoundError, BusinessNotFoundError);
+      businessService = businesServiceModule(businessWrapper, CityNotFoundError, BusinessNotFoundError);
     });
 
     describe('should return an object', () => {
@@ -43,7 +76,17 @@ describe('business-service module', () => {
         });
         describe('and when it runs', () => {
           it('should return all business in the passed city', (done) => {
-            const businessesInMadrid = businessData[0].businesses;
+            const businessesInMadrid = [{
+              city: 'Madrid',
+              id: 'MAD17298',
+              name: 'Farmacia Licenciado Fernández',
+              address: 'Calle Arturo Soria, 15',
+            }, {
+              city: 'Madrid',
+              id: 'MAD71639921',
+              name: 'Panadería San Martín',
+              address: 'Calle del Hostal, 5',
+            }];
             businessService.getCityBusinesses('Madrid')
               .then((businesses) => {
                 expect(businesses).to.eqls(businessesInMadrid);
@@ -62,13 +105,10 @@ describe('business-service module', () => {
         });
         describe('and when it runs and the city have not any businesses', () => {
           before(() => {
-            businessData.push({
-              country: 'ES',
-              city: 'EmptyCity',
-            });
+            businessWrapper.cities.push('EmptyCity');
           });
           after(() => {
-            businessData.pop();
+            businessWrapper.cities.pop();
           });
 
           it('should return an empty array', (done) => {
@@ -92,17 +132,17 @@ describe('business-service module', () => {
           let savedBusiness;
 
           before(() => {
-            savedBusiness = Object.assign({}, businessData[0].businesses[1]);
+            savedBusiness = Object.assign({}, businessWrapper.businesses[1]);
           });
           after(() => {
-            businessData[0].businesses[1] = savedBusiness;
+            businessWrapper.businesses[1] = savedBusiness;
           });
 
           it('it should change que business adress', (done) => {
             businessService.updateBusinessAddress(id, newAddress)
               .then((modifiedElement) => {
                 expect(modifiedElement.address).equals(newAddress);
-                expect(businessData[0].businesses[1]).to.not.eqls(savedBusiness);
+                expect(businessWrapper.businesses[1]).to.not.eqls(savedBusiness);
                 done();
               });
           });
