@@ -37,14 +37,14 @@ describe('business-service module', () => {
         });
       });
 
-      describe('with "getCityBusiness" property', () => {
+      describe('with "getCityBusinesses" property', () => {
         it('defined as a function', () => {
-          expect(businessService.getCityBusiness).to.be.a('function');
+          expect(businessService.getCityBusinesses).to.be.a('function');
         });
         describe('and when it runs', () => {
           it('should return all business in the passed city', (done) => {
             const businessesInMadrid = businessData[0].businesses;
-            businessService.getCityBusiness('Madrid')
+            businessService.getCityBusinesses('Madrid')
               .then((businesses) => {
                 expect(businesses).to.eqls(businessesInMadrid);
                 done();
@@ -53,7 +53,7 @@ describe('business-service module', () => {
         });
         describe('and when it runs and the city does not exist', () => {
           it('should return an "CityNotFoundError" error', (done) => {
-            businessService.getCityBusiness('Other')
+            businessService.getCityBusinesses('Other')
               .catch((err) => {
                 expect(err).to.be.instanceOf(CityNotFoundError);
                 done();
@@ -72,7 +72,7 @@ describe('business-service module', () => {
           });
 
           it('should return an empty array', (done) => {
-            businessService.getCityBusiness('EmptyCity')
+            businessService.getCityBusinesses('EmptyCity')
               .then((businesses) => {
                 expect(businesses).to.eqls([]);
                 done();
@@ -92,17 +92,17 @@ describe('business-service module', () => {
           let savedBusiness;
 
           before(() => {
-            savedBusiness = Object.assign({}, businessData[0][1]);
+            savedBusiness = Object.assign({}, businessData[0].businesses[1]);
           });
           after(() => {
-            businessData[0][1] = savedBusiness;
+            businessData[0].businesses[1] = savedBusiness;
           });
 
           it('it should change que business adress', (done) => {
             businessService.updateBusinessAddress(id, newAddress)
               .then((modifiedElement) => {
                 expect(modifiedElement.address).equals(newAddress);
-                expect(businessData[0][1]).to.not.eqls(savedBusiness);
+                expect(businessData[0].businesses[1]).to.not.eqls(savedBusiness);
                 done();
               });
           });

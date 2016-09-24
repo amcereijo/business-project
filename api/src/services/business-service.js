@@ -5,12 +5,15 @@ exports = module.exports = (businessData, CityNotFoundError, BusinessNotFoundErr
     return Promise.resolve(businessData.map(element => element.city));
   }
 
-  function getCityBusiness(city = '') {
-    const cityElement = businessData.filter(element => element.city.toUpperCase() === city.toUpperCase());
-    if(!cityElement || cityElement.length === 0) {
-      return Promise.reject(new CityNotFoundError());
-    }
-    return Promise.resolve(cityElement[0].businesses || []);
+  function getCityBusinesses(city = '') {
+    return new Promise((resolve, reject) => {
+      const cityElement = businessData.filter(element => element.city.toUpperCase() === city.toUpperCase());
+      if(!cityElement || cityElement.length === 0) {
+        reject(new CityNotFoundError());
+      } else {
+        resolve(cityElement[0].businesses || []);
+      }
+    });
   }
 
   function updateBusinessAddress(id, address) {
@@ -30,7 +33,7 @@ exports = module.exports = (businessData, CityNotFoundError, BusinessNotFoundErr
 
   return {
     getCities,
-    getCityBusiness,
+    getCityBusinesses,
     updateBusinessAddress,
   };
 };
