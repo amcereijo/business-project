@@ -1,4 +1,9 @@
 module.exports = {
   port: 7000,
-  path: '/business/api/',
+  path: '/business/api',
+  controllers: {
+    getCities: {
+      endpoint: '/cities',
+    },
+  },
 };
