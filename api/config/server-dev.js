@@ -8,5 +8,8 @@ module.exports = {
     getBusiness: {
       endpoint: '/cities/:city/businesess',
     },
+    updateBusiness: {
+      endpoint: '/businesess/:id',
+    },
   },
 };
