@@ -5,5 +5,8 @@ module.exports = {
     getCities: {
       endpoint: '/cities',
     },
+    getBusiness: {
+      endpoint: '/cities/:city/businesess',
+    },
   },
 };
