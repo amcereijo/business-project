@@ -11,5 +11,8 @@ module.exports = {
     updateBusiness: {
       endpoint: '/businesess/:id',
     },
+    removeBusiness: {
+      endpoint: '/businesess/:id',
+    },
   },
 };
