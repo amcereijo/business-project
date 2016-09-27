@@ -4,6 +4,9 @@ class HomeController {
     // TODO get from service
     this.cities = ['Madrid', 'Barcelona', 'Paris'];
   }
+  selectCity(cityName) {
+    console.log('cityName: ', cityName);
+  }
 }
 
 export default HomeController;

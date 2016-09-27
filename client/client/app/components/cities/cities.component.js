@@ -5,7 +5,8 @@ import './cities.styl';
 let citiesComponent = {
   restrict: 'E',
   bindings: {
-    cities: '<'
+    cities: '<',
+    onChangeCity: '&',
   },
   template,
   controller

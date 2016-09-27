@@ -4,11 +4,13 @@ import Components from './components/components';
 import AppComponent from './app.component';
 import 'normalize.css';
 import dropdown from 'angular-ui-bootstrap/src/dropdown';
+import uibootstrap from 'angular-ui-bootstrap';
 
 angular.module('app', [
     uiRouter,
-    Components,
     dropdown,
+    uibootstrap,
+    Components,
   ])
   .config(($locationProvider) => {
     "ngInject";

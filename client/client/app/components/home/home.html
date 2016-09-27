@@ -1,6 +1,6 @@
 <main>
   <div>
     <header>/</header>
-    <cities cities="$ctrl.cities"></cities>
+    <cities on-change-city="$ctrl.selectCity(cityName).bind($ctrl)" cities="$ctrl.cities"></cities>
   </div>
 </main>
