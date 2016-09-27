@@ -4,7 +4,9 @@ import './cities.styl';
 
 let citiesComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+    cities: '<'
+  },
   template,
   controller
 };
