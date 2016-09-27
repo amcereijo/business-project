@@ -3,7 +3,9 @@
   <div >
     <div class="list-group" >
       <a href="#" ng-repeat="business in $ctrl.businesses track by $index" class="list-group-item">
-        {{ business.name }}
+        <span ng-click="$ctrl.onSelectBusiness({ id: business.id })">{{ business.name }}</span>
+        <businessdetails reset-selected-business="$ctrl.resetSelectedBusiness()"
+          on-save-business="$ctrl.onSaveBusiness(business)" business="$ctrl.selectedBusiness"></businessdetails>
       </a>
     </div>
   </div>

@@ -7,6 +7,10 @@ let businessComponent = {
   bindings: {
     cityName: '<',
     businesses: '<',
+    onSelectBusiness: '&',
+    selectedBusiness: '<',
+    resetSelectedBusiness: '&',
+    onSaveBusiness: '&',
   },
   template,
   controller

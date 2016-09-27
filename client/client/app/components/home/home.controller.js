@@ -31,11 +31,25 @@ class HomeController {
     ];
     this.businesses = []
     this.selectedCityName = '';
+    this.selectedBusiness = null;
   }
   selectCity(cityName) {
     console.log('cityName: ', cityName);
     this.businesses = this.TOTAL_BUSINESESS;
     this.selectedCityName = cityName;
+  }
+  showBusiness(businessId) {
+    console.log('businessId: ', businessId);
+    this.selectedBusiness = this.businesses.filter((b) => b.id === businessId)[0];
+    console.log('selectedBusiness: ', this.selectedBusiness);
+  }
+  resetSelectedBusiness() {
+    this.selectedBusiness = null;
+  }
+
+  onSaveBusiness(business) {
+    console.log('business: ', business);
+    this.selectedBusiness = null;
   }
 }
 
