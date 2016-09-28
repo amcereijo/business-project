@@ -3,7 +3,6 @@ import Home from './home/home';
 import Cities from './cities/cities';
 import Header from './header/header';
 import Business from './business/business';
-// import BusinessDetails from './business-details/business-details';
 import BusinessDetails from './businessdetails/businessdetails';
 
 let componentModule = angular.module('app.components', [

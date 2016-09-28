@@ -1,8 +1,10 @@
 class HomeController {
-  constructor() {
+/*@ngInject*/
+  constructor(CitiesService) {
+    this.CitiesService = CitiesService;
     this.name = 'home';
     // TODO get from service
-    this.cities = ['Madrid', 'Barcelona', 'Paris'];
+    this.cities = [];
     this.TOTAL_BUSINESESS = [
       {
         "city": "Madrid",
@@ -33,9 +35,24 @@ class HomeController {
     this.selectedCityName = '';
     this.selectedBusiness = null;
   }
+
+  $onInit() {
+    console.log('On init');
+    this.CitiesService.getCities().then((cities) => {
+      this.cities = cities;
+    })
+    .catch((Err) => {
+      console.error('Error get cities: ', Err);
+    })
+  }
+
   selectCity(cityName) {
     console.log('cityName: ', cityName);
-    this.businesses = this.TOTAL_BUSINESESS;
+    this.CitiesService.getBusinessesInCity(cityName)
+      .then((businesses) => {
+        this.businesses = businesses;
+      })
+    // this.businesses = this.TOTAL_BUSINESESS;
     this.selectedCityName = cityName;
   }
   showBusiness(businessId) {

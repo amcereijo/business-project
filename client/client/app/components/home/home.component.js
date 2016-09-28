@@ -7,7 +7,7 @@ let homeComponent = {
   restrict: 'E',
   bindings: {},
   template,
-  controller
+  controller,
 };
 
 export default homeComponent;
