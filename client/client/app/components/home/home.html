@@ -5,7 +5,7 @@
     <business selected-business="$ctrl.selectedBusiness" businesses="$ctrl.businesses" city-name="$ctrl.selectedCityName"
       on-select-business="$ctrl.showBusiness(id).bind($ctrl)"
       reset-selected-business="$ctrl.resetSelectedBusiness().bind($ctrl)"
-      on-save-business="$ctrl.onSaveBusiness(business)"
+      on-save-business="$ctrl.onSaveBusiness(id, address)"
       on-delete-selected-business="$ctrl.onDeleteSelectedBusiness(id).bind($ctrl)"></business>
   </div>
 </main>

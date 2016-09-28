@@ -1,14 +1,13 @@
 import HomeModule from './home'
 
-describe.only('Home', () => {
+describe('Home', () => {
   let $rootScope, $state, $location, $componentController, $compile, CitiesService;
 
   beforeEach(window.module(HomeModule));
 
   beforeEach(angular.mock.module("home", function ($provide) {
-        //Attempt to override the myConstant value that gets passed to config
-        $provide.constant("__env", {});
-    }));
+    $provide.constant("__env", {});
+  }));
 
   beforeEach(inject(($injector) => {
     CitiesService = $injector.get('CitiesService');

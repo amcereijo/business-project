@@ -5,7 +5,7 @@
       <a href="#" ng-repeat="business in $ctrl.businesses track by $index" class="list-group-item">
         <span ng-click="$ctrl.onSelectBusiness({ id: business.id })">{{ business.name }}</span>
         <businessdetails reset-selected-business="$ctrl.resetSelectedBusiness()"
-          on-save-business="$ctrl.onSaveBusiness(business)"
+          on-save-business="$ctrl.onSaveBusiness(id, address)"
           on-delete-selected-business="$ctrl.onDeleteSelectedBusiness({ id:id })" business="$ctrl.selectedBusiness"></businessdetails>
       </a>
     </div>

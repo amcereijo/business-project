@@ -2,8 +2,8 @@ class BusinessdetailsController {
   constructor() {
     this.name = 'businessdetails';
   }
-  saveAddress(address) {
-    this.onSaveBusiness.call(null, { business: address });
+  saveAddress(id, address) {
+    this.onSaveBusiness.call(null, { id, address });
   }
 }
 
