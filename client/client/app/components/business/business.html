@@ -1,0 +1,13 @@
+<div class="business">
+  <h3>{{$ctrl.cityName}}</h3>
+  <div >
+    <div class="list-group" >
+      <a href="#" ng-repeat="business in $ctrl.businesses track by $index" class="list-group-item">
+        <span ng-click="$ctrl.onSelectBusiness({ id: business.id })">{{ business.name }}</span>
+        <businessdetails reset-selected-business="$ctrl.resetSelectedBusiness()"
+          on-save-business="$ctrl.onSaveBusiness(id, address)"
+          on-delete-selected-business="$ctrl.onDeleteSelectedBusiness({ id:id })" business="$ctrl.selectedBusiness"></businessdetails>
+      </a>
+    </div>
+  </div>
+</div>
