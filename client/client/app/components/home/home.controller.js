@@ -51,6 +51,11 @@ class HomeController {
     console.log('business: ', business);
     this.selectedBusiness = null;
   }
+
+  onDeleteSelectedBusiness(id) {
+    console.log('delete id: ', id);
+    this.selectedBusiness = null;
+  }
 }
 
 export default HomeController;

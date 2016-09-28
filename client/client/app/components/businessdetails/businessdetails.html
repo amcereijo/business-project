@@ -9,7 +9,8 @@
       </div>
       <div class="buttons">
         <button type="button" class="btn btn-success"  ng-click="$ctrl.saveAddress({business: $ctrl.business.address})">Save</button>
-        <button type="button" class="btn btn-danger" ng-click="$ctrl.resetSelectedBusiness()">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="$ctrl.resetSelectedBusiness()">Close</button>
+        <button type="button" class="btn btn-danger" ng-click="$ctrl.onDeleteSelectedBusiness({ id: $ctrl.business.id })">Delete</button>
       <div>
     </div>
   </div>

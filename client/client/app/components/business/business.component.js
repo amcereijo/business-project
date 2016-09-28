@@ -11,6 +11,7 @@ let businessComponent = {
     selectedBusiness: '<',
     resetSelectedBusiness: '&',
     onSaveBusiness: '&',
+    onDeleteSelectedBusiness: '&',
   },
   template,
   controller
